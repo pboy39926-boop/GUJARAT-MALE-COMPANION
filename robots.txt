@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gujaratmalecompanion.com/sitemap.xml
