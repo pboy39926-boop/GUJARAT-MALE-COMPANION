@@ -41,7 +41,7 @@ function initWaLinks(){
 }
 
 // Floating button + number + brand auto-set
-document.getElementById('waFloat').href = waLink('Hi! 👋 I saw your website and would like to know more about your companionship services. (Discreet inquiry)');
+document.getElementById('waFloat').href = waLink('Hi! I saw your website and would like to know more about your companionship services. (Discreet inquiry)');
 const numOnly = MY.phone.slice(-10), pretty = `+91 ${numOnly.slice(0,5)} ${numOnly.slice(5)}`;
 document.querySelectorAll('.wa-number').forEach(el => el.textContent = pretty);
 document.getElementById('heroName').textContent = MY.name;
@@ -93,35 +93,35 @@ function closeBook(){ document.getElementById('bookModal').style.display='none';
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeBook(); });
 document.addEventListener('click', e => { const b = e.target.closest('[data-book]'); if(b) openBook(b.dataset.book); });
 
-// Booking form → WhatsApp
+// Booking form -> WhatsApp
 function sendBook(e){
   e.preventDefault();
   const notes = val('bNotes');
-  const lines = ['✨ *NEW BOOKING REQUEST*','',
-    `👤 Name: ${val('bName')}`,
-    `📱 Phone: ${val('bPhone')}`,
-    `📍 City: ${val('bCity')}`,
-    `💫 Service: ${val('bService')}`,
-    `📅 Date: ${fmtDate(val('bDate'))}`,
-    `⏰ Time: ${fmtTime(val('bTime'))}`,
-    `⏳ Duration: ${val('bDuration')}`];
-  if(notes) lines.push(`📝 Notes: ${notes}`);
+  const lines = ['*NEW BOOKING REQUEST*','',
+    `Name: ${val('bName')}`,
+    `Phone: ${val('bPhone')}`,
+    `City: ${val('bCity')}`,
+    `Service: ${val('bService')}`,
+    `Date: ${fmtDate(val('bDate'))}`,
+    `Time: ${fmtTime(val('bTime'))}`,
+    `Duration: ${val('bDuration')}`];
+  if(notes) lines.push(`Notes: ${notes}`);
   window.open(waLink(lines.join('\n')), '_blank');
   closeBook(); e.target.reset();
-  showToast('Booking WhatsApp par bhej di gayi ✔');
+  showToast('Booking WhatsApp par bhej di gayi');
 }
 
-// Quick message form → WhatsApp
+// Quick message form -> WhatsApp
 function sendMsg(e){
   e.preventDefault();
-  const lines = ['💬 *NEW MESSAGE FROM WEBSITE*','',
-    `👤 Name: ${val('qName')}`,
-    `📱 Phone: ${val('qPhone')}`,
-    `🔎 Looking for: ${val('qService')}`,'',
+  const lines = ['*NEW MESSAGE FROM WEBSITE*','',
+    `Name: ${val('qName')}`,
+    `Phone: ${val('qPhone')}`,
+    `Looking for: ${val('qService')}`,'',
     val('qMsg')];
   window.open(waLink(lines.join('\n')), '_blank');
   e.target.reset();
-  showToast('Message WhatsApp par bhej diya ✔');
+  showToast('Message WhatsApp par bhej diya');
 }
 
 // Toast
