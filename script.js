@@ -4,7 +4,7 @@
 const MY = {
   brandMain: "GUJARAT MALE",   // ← brand ka white text
   brandAccent: "COMPANION",    // ← brand ka golden text
-  name: "Hunter",              // ← apna alias/professional name
+  name: "Kabir",              // ← apna alias/professional name
   phone: "919106420341",       // ← WhatsApp number (country code + number, bina + ke)
   city: "Ahmedabad, Gujarat",
 
