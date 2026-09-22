@@ -1,0 +1,75 @@
+/* ═══════════════════════════════════════════
+   Gujarat Male Companion — Custom Styles
+   (Tailwind ke upar ye custom classes hain)
+   ═══════════════════════════════════════════ */
+
+/* Base */
+*{font-family:'Inter',sans-serif;margin:0;padding:0;box-sizing:border-box}
+::selection{background:#D4AF37;color:#111}
+select option{background:#0a0a0a;color:#fff}
+
+/* Scrollbar hide (modal ke liye) */
+.hide-scrollbar::-webkit-scrollbar{display:none}
+.hide-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+
+/* Glass effect (nav, cards, toast) */
+.glass{background:rgba(23,23,23,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.08)}
+
+/* Hero heading gradient */
+.hero-grad{background:linear-gradient(to bottom,#FFF,#8a8a8a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* Golden glow background */
+.glow{background:radial-gradient(circle at center,rgba(212,175,55,.12) 0%,transparent 70%)}
+
+/* Scroll animations */
+.anim{opacity:0;transform:translateY(30px);transition:all .7s ease}
+.anim.show{opacity:1;transform:translateY(0)}
+.anim-l{opacity:0;transform:translateX(-40px);transition:all .7s ease}
+.anim-l.show{opacity:1;transform:translateX(0)}
+.anim-r{opacity:0;transform:translateX(40px);transition:all .7s ease}
+.anim-r.show{opacity:1;transform:translateX(0)}
+
+/* Floating animation (hero badges) */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.float{animation:float 3s ease-in-out infinite}
+
+/* Pulsing dot (Available Now badge) */
+@keyframes pulse-r{0%{transform:scale(1);opacity:1}100%{transform:scale(1.6);opacity:0}}
+.pulse-dot::before{content:'';position:absolute;inset:-4px;border-radius:9999px;border:2px solid #D4AF37;animation:pulse-r 2s ease-out infinite}
+
+/* Service cards hover */
+.srv:hover{border-color:rgba(212,175,55,.35);transform:translateY(-3px)}
+
+/* Nav links underline hover */
+.nav-l{position:relative;transition:color .3s}
+.nav-l::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:#D4AF37;transition:width .3s}
+.nav-l:hover::after{width:100%}
+
+/* Toast notification */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(100px);z-index:9999;transition:transform .4s,opacity .4s;opacity:0}
+.toast.on{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* Modal backdrop blur */
+.modal-bg{background:rgba(0,0,0,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+
+/* Form focus (gold border) */
+input:focus,textarea:focus,select:focus{outline:none;border-color:#D4AF37!important;box-shadow:0 0 0 2px rgba(212,175,55,.2)}
+
+/* Hero photo — spinning golden ring */
+.hero-img-wrap{position:relative}
+.hero-img-wrap::before{content:'';position:absolute;inset:-3px;border-radius:9999px;background:conic-gradient(from 0deg,#D4AF37,transparent,#D4AF37);animation:spin 4s linear infinite;z-index:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Tag chips hover */
+.tag{transition:all .3s}
+.tag:hover{background:rgba(212,175,55,.12);border-color:rgba(212,175,55,.4);color:#D4AF37}
+
+/* Brand logo */
+.brand-logo{display:flex;align-items:center;gap:8px}
+.brand-logo svg{flex-shrink:0}
+.brand-text{font-size:13px;font-weight:600;letter-spacing:.06em;line-height:1}
+.b-accent{color:#D4AF37}
+
+/* City chips */
+.city-chip{font-size:11px;padding:6px 14px;border-radius:9999px;border:1px solid #262626;background:#0f0f0f;color:#a3a3a3;transition:all .3s}
+.city-chip:hover{border-color:rgba(212,175,55,.4);color:#E8C96A}
