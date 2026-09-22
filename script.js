@@ -8,26 +8,26 @@ const MY = {
   phone: "919106420341",       // ← WhatsApp number (country code + number, bina + ke)
   city: "Ahmedabad, Gujarat",
 
-  // Rates yahan — naya plan add karne ke liye bas ek line {} copy karo
+  // Rates yahan - naya plan add karne ke liye bas ek line {} copy karo
   services: [
     { icon:"lucide:clock",     title:"1 Hour",         desc:"Quick meet, coffee or short outing",           price:"Inquire", popular: false },
     { icon:"lucide:utensils",  title:"3 Hours",        desc:"Dinner date + movie or long drive",            price:"Inquire", popular: true },
     { icon:"lucide:sun",       title:"Full Night",     desc:"Complete evening till morning",                price:"Inquire", popular: false },
-    { icon:"lucide:calendar",  title:"Full Day",       desc:"12 hrs — shopping, lunch, dinner, everything", price:"Inquire", popular: false },
-    { icon:"lucide:palm-tree", title:"Weekend",        desc:"Fri evening to Sun — trip, stay, fun",         price:"Inquire", popular: false },
-    { icon:"lucide:plane",     title:"Travel Package", desc:"Outstation trips — Goa, Mount Abu, etc.",      price:"Custom",  popular: false }
+    { icon:"lucide:calendar",  title:"Full Day",       desc:"12 hrs - shopping, lunch, dinner, everything", price:"Inquire", popular: false },
+    { icon:"lucide:palm-tree", title:"Weekend",        desc:"Fri evening to Sun - trip, stay, fun",         price:"Inquire", popular: false },
+    { icon:"lucide:plane",     title:"Travel Package", desc:"Outstation trips - Goa, Mount Abu, etc.",      price:"Custom",  popular: false }
   ],
 
   // Naye reviews yahan add karte raho
   reviews: [
     { text:"He was so respectful and charming. My first time booking someone and he made me feel so comfortable. The dinner was amazing and he knew exactly how to keep the conversation going. Will definitely book again!", name:"Sneha",  meta:"Ahmedabad • Dinner Date" },
     { text:"Booked him for my friend's wedding as my plus-one. Everyone thought he was my boyfriend 😂 He was so well-dressed, confident, and danced with me all night. 10/10 recommend!", name:"Riya",   meta:"Rajkot • Wedding Date" },
-    { text:"Took him for a Goa weekend and it was the best decision! Beach, clubs, sunset dinner — he planned everything. So much fun and not even for a second did I feel uncomfortable. Total value for money.", name:"Pooja",  meta:"Goa • Weekend Trip" },
-    { text:"I was going through a stressful phase at work and just needed good company. He was such a good listener — no judgment, just pure warmth. We just sat at a café for 3 hours and I felt so much better. Thank you ❤️", name:"Ananya", meta:"Ahmedabad • Coffee Date" }
+    { text:"Took him for a Goa weekend and it was the best decision! Beach, clubs, sunset dinner - he planned everything. So much fun and not even for a second did I feel uncomfortable. Total value for money.", name:"Pooja",  meta:"Goa • Weekend Trip" },
+    { text:"I was going through a stressful phase at work and just needed good company. He was such a good listener - no judgment, just pure warmth. We just sat at a café for 3 hours and I felt so much better. Thank you ❤️", name:"Ananya", meta:"Ahmedabad • Coffee Date" }
   ]
 };
 
-// ═════════ Neeche ka code automatically sab handle karta hai — mat chhedo ═════════
+// ═════════ Neeche ka code automatically sab handle karta hai - mat chhedo ═════════
 
 // WhatsApp helpers
 const waLink = t => `https://wa.me/${MY.phone}?text=${encodeURIComponent(t)}`;
