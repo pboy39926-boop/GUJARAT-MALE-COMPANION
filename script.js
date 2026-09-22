@@ -10,12 +10,12 @@ const MY = {
 
   // Rates yahan — naya plan add karne ke liye bas ek line {} copy karo
   services: [
-    { icon:"lucide:clock",     title:"1 Hour",         desc:"Quick meet, coffee or short outing",           price:"₹3,000" },
-    { icon:"lucide:utensils",  title:"3 Hours",        desc:"Dinner date + movie or long drive",            price:"₹7,000", popular:true },
-    { icon:"lucide:sun",       title:"Full Night",     desc:"Complete evening till morning",                price:"₹12,000" },
-    { icon:"lucide:calendar",  title:"Full Day",       desc:"12 hrs — shopping, lunch, dinner, everything", price:"₹18,000" },
-    { icon:"lucide:palm-tree", title:"Weekend",        desc:"Fri evening to Sun — trip, stay, fun",         price:"₹35,000" },
-    { icon:"lucide:plane",     title:"Travel Package", desc:"Outstation trips — Goa, Mount Abu, etc.",      price:"Custom" }
+    { icon:"lucide:clock",     title:"1 Hour",         desc:"Quick meet, coffee or short outing",           price:"Inquire", popular: false },
+    { icon:"lucide:utensils",  title:"3 Hours",        desc:"Dinner date + movie or long drive",            price:"Inquire", popular: true },
+    { icon:"lucide:sun",       title:"Full Night",     desc:"Complete evening till morning",                price:"Inquire", popular: false },
+    { icon:"lucide:calendar",  title:"Full Day",       desc:"12 hrs — shopping, lunch, dinner, everything", price:"Inquire", popular: false },
+    { icon:"lucide:palm-tree", title:"Weekend",        desc:"Fri evening to Sun — trip, stay, fun",         price:"Inquire", popular: false },
+    { icon:"lucide:plane",     title:"Travel Package", desc:"Outstation trips — Goa, Mount Abu, etc.",      price:"Custom",  popular: false }
   ],
 
   // Naye reviews yahan add karte raho
