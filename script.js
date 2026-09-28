@@ -2,10 +2,11 @@
 //   ★★★ YAHAN APNI SAB DETAILS CHANGE KARO ★★★
 // ═══════════════════════════════════════════════════════
 const MY = {
-  brandMain: "GUJARAT MALE",   // ← brand ka white text
-  brandAccent: "COMPANION",    // ← brand ka golden text
-  name: "Kabir",              // ← apna alias/professional name
-  phone: "919106420341",       // ← WhatsApp number (country code + number, bina + ke)
+  brandMain: "GUJARAT MALE",
+  brandAccent: "COMPANION",
+  name: "Kabir",               // ← aapki IG id ke hisaab se Kabir set kiya
+  instagram: "kabir.companion", // ← Instagram username (bina @ ke)
+  phone: "919106420341",        // ← backup only — website par ab public NAHI hoga
   city: "Ahmedabad, Gujarat",
 
   // Rates yahan - naya plan add karne ke liye bas ek line {} copy karo
@@ -18,32 +19,43 @@ const MY = {
     { icon:"lucide:plane",     title:"Travel Package", desc:"Outstation trips - Goa, Mount Abu, etc.",      price:"Custom",  popular: false }
   ],
 
-  // Naye reviews yahan add karte raho
   reviews: [
     { text:"He was so respectful and charming. My first time booking someone and he made me feel so comfortable. The dinner was amazing and he knew exactly how to keep the conversation going. Will definitely book again!", name:"Sneha",  meta:"Ahmedabad • Dinner Date" },
-    { text:"Booked him for my friend's wedding as my plus-one. Everyone thought he was my boyfriend 😂 He was so well-dressed, confident, and danced with me all night. 10/10 recommend!", name:"Riya",   meta:"Rajkot • Wedding Date" },
-    { text:"Took him for a Goa weekend and it was the best decision! Beach, clubs, sunset dinner - he planned everything. So much fun and not even for a second did I feel uncomfortable. Total value for money.", name:"Pooja",  meta:"Goa • Weekend Trip" },
-    { text:"I was going through a stressful phase at work and just needed good company. He was such a good listener - no judgment, just pure warmth. We just sat at a café for 3 hours and I felt so much better. Thank you ❤️", name:"Ananya", meta:"Ahmedabad • Coffee Date" }
+    { text:"Booked him for my friend's wedding as my plus-one. Everyone thought he was my boyfriend! He was so well-dressed, confident, and danced with me all night. 10/10 recommend!", name:"Riya",   meta:"Rajkot • Wedding Date" },
+    { text:"Took him for a Goa weekend and it was the best decision! Beach, clubs, sunset dinner — he planned everything. So much fun and not even for a second did I feel uncomfortable. Total value for money.", name:"Pooja",  meta:"Goa • Weekend Trip" },
+    { text:"I was going through a stressful phase at work and just needed good company. He was such a good listener — no judgment, just pure warmth. We just sat at a café for 3 hours and I felt so much better. Thank you!", name:"Ananya", meta:"Ahmedabad • Coffee Date" }
   ]
 };
 
-// ═════════ Neeche ka code automatically sab handle karta hai - mat chhedo ═════════
+// ═════════ Neeche ka code automatically sab handle karta hai — mat chhedo ═════════
 
-// WhatsApp helpers
-const waLink = t => `https://wa.me/${MY.phone}?text=${encodeURIComponent(t)}`;
+// Instagram links
+const IG_PROFILE = `https://www.instagram.com/${MY.instagram}/`;
+const IG_DM = `https://ig.me/m/${MY.instagram}`;   // direct DM kholta hai
 const val = id => document.getElementById(id).value.trim();
 function fmtDate(d){ if(!d) return ''; const x = new Date(d+'T00:00:00'); return x.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short',year:'numeric'}); }
 function fmtTime(t){ if(!t) return ''; const [h,m] = t.split(':'); return `${(+h%12)||12}:${m} ${+h<12?'AM':'PM'}`; }
 
-// Saare data-wa links set karta hai (static + dynamic dono)
-function initWaLinks(){
-  document.querySelectorAll('[data-wa]').forEach(a => a.href = waLink(a.dataset.wa));
+// Clipboard helper (details copy karne ke liye)
+function copyText(t){
+  if(navigator.clipboard && window.isSecureContext){
+    return navigator.clipboard.writeText(t).catch(()=>fallbackCopy(t));
+  }
+  return Promise.resolve(fallbackCopy(t));
+}
+function fallbackCopy(t){
+  const ta = document.createElement('textarea');
+  ta.value = t; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); }catch(e){}
+  document.body.removeChild(ta);
 }
 
-// Floating button + number + brand auto-set
-document.getElementById('waFloat').href = waLink('Hi! I saw your website and would like to know more about your companionship services. (Discreet inquiry)');
-const numOnly = MY.phone.slice(-10), pretty = `+91 ${numOnly.slice(0,5)} ${numOnly.slice(5)}`;
-document.querySelectorAll('.wa-number').forEach(el => el.textContent = pretty);
+// Saare data-ig links set karo (agar HTML me ho)
+document.querySelectorAll('[data-ig]').forEach(a => a.href = IG_DM);
+const igFloat = document.getElementById('igFloat');
+if(igFloat) igFloat.href = IG_DM;
+document.querySelectorAll('.ig-handle').forEach(el => el.textContent = '@' + MY.instagram);
 document.getElementById('heroName').textContent = MY.name;
 document.getElementById('heroCity').textContent = MY.city;
 document.querySelectorAll('.b-main').forEach(e => e.textContent = MY.brandMain);
@@ -54,7 +66,7 @@ function renderServices(){
   document.getElementById('servicesGrid').innerHTML = MY.services.map((s,i)=>{
     const custom = s.price === 'Custom';
     const btn = custom
-      ? `<a data-wa="Hi, I want a quote for the ${s.title}" target="_blank" href="#" class="w-full border border-neutral-700 text-xs font-semibold py-2.5 rounded-xl hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2"><span class="iconify" data-icon="lucide:message-circle"></span>Ask on WhatsApp</a>`
+      ? `<a data-ig target="_blank" href="#" class="w-full border border-neutral-700 text-xs font-semibold py-2.5 rounded-xl hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2"><span class="iconify" data-icon="lucide:instagram"></span>Ask on Instagram</a>`
       : `<button data-book="${s.title}" class="w-full ${s.popular ? 'bg-white text-black hover:bg-gold' : 'border border-neutral-700 hover:bg-white hover:text-black'} text-xs font-semibold py-2.5 rounded-xl transition-all duration-300">Book Now</button>`;
     return `<div class="srv anim bg-neutral-900 ${s.popular ? 'border border-gold/40 relative' : 'border border-neutral-800'} rounded-2xl p-6 transition-all duration-500" style="transition-delay:${(i%3)*.1}s">
       ${s.popular ? '<div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gold text-[10px] font-bold uppercase tracking-wider text-black">Most Popular</div>' : ''}
@@ -93,35 +105,40 @@ function closeBook(){ document.getElementById('bookModal').style.display='none';
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeBook(); });
 document.addEventListener('click', e => { const b = e.target.closest('[data-book]'); if(b) openBook(b.dataset.book); });
 
-// Booking form -> WhatsApp
+// Booking form -> Instagram DM (details clipboard me copy hoti hain)
 function sendBook(e){
   e.preventDefault();
   const notes = val('bNotes');
   const lines = ['*NEW BOOKING REQUEST*','',
     `Name: ${val('bName')}`,
-    `Phone: ${val('bPhone')}`,
+    `Phone: ${val('bPhone') || 'DM par batayi'}`,
     `City: ${val('bCity')}`,
     `Service: ${val('bService')}`,
     `Date: ${fmtDate(val('bDate'))}`,
     `Time: ${fmtTime(val('bTime'))}`,
     `Duration: ${val('bDuration')}`];
   if(notes) lines.push(`Notes: ${notes}`);
-  window.open(waLink(lines.join('\n')), '_blank');
-  closeBook(); e.target.reset();
-  showToast('Booking WhatsApp par bhej di gayi');
+  closeBook();
+  copyText(lines.join('\n')).then(()=>{
+    window.open(IG_DM, '_blank');
+    showToast('Details copy ho gayi! DM me paste karke send karo');
+  });
+  e.target.reset();
 }
 
-// Quick message form -> WhatsApp
+// Quick message form -> Instagram DM
 function sendMsg(e){
   e.preventDefault();
   const lines = ['*NEW MESSAGE FROM WEBSITE*','',
     `Name: ${val('qName')}`,
-    `Phone: ${val('qPhone')}`,
+    `Phone: ${val('qPhone') || 'DM par batayi'}`,
     `Looking for: ${val('qService')}`,'',
     val('qMsg')];
-  window.open(waLink(lines.join('\n')), '_blank');
+  copyText(lines.join('\n')).then(()=>{
+    window.open(IG_DM, '_blank');
+    showToast('Details copy ho gayi! DM me paste karke send karo');
+  });
   e.target.reset();
-  showToast('Message WhatsApp par bhej diya');
 }
 
 // Toast
@@ -131,7 +148,7 @@ function showToast(m){
   document.getElementById('toastMsg').textContent = m;
   t.classList.add('on');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>t.classList.remove('on'), 3000);
+  toastTimer = setTimeout(()=>t.classList.remove('on'), 4000);
 }
 
 // Mobile menu
@@ -156,7 +173,6 @@ const obs = new IntersectionObserver(es => es.forEach(en => {
 // Init
 renderServices();
 renderReviews();
-initWaLinks();
 document.querySelectorAll('.anim,.anim-l,.anim-r').forEach(el => obs.observe(el));
 document.getElementById('bDate').min = new Date().toISOString().split('T')[0];
 document.getElementById('year').textContent = new Date().getFullYear();
